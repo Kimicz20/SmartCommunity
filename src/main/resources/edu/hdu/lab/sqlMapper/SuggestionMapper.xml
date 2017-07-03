@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.hdu.lab.mapper.SuggestionMapper" >
+  <resultMap id="BaseResultMap" type="edu.hdu.lab.model.Suggestion" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="texts" property="texts" jdbcType="VARCHAR" />
+    <result column="voice" property="voice" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="INTEGER" />
+    <result column="last_editor" property="lastEditor" jdbcType="INTEGER" />
+    <result column="last_edit_time" property="lastEditTime" jdbcType="TIMESTAMP" />
+    <result column="picture_one" property="pictureOne" jdbcType="VARCHAR" />
+    <result column="picture_two" property="pictureTwo" jdbcType="VARCHAR" />
+    <result column="picture_three" property="pictureThree" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, texts, voice, creator, last_editor, last_edit_time, picture_one, picture_two, 
+    picture_three, comment, status, type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.model.SuggestionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from suggestion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from suggestion
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from suggestion
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="edu.hdu.lab.model.SuggestionExample" >
+    delete from suggestion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="edu.hdu.lab.model.Suggestion" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into suggestion (texts, voice, creator, 
+      last_editor, last_edit_time, picture_one, 
+      picture_two, picture_three, comment, 
+      status, type)
+    values (#{texts,jdbcType=VARCHAR}, #{voice,jdbcType=VARCHAR}, #{creator,jdbcType=INTEGER}, 
+      #{lastEditor,jdbcType=INTEGER}, #{lastEditTime,jdbcType=TIMESTAMP}, #{pictureOne,jdbcType=VARCHAR}, 
+      #{pictureTwo,jdbcType=VARCHAR}, #{pictureThree,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{type,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hdu.lab.model.Suggestion" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into suggestion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="texts != null" >
+        texts,
+      </if>
+      <if test="voice != null" >
+        voice,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="lastEditor != null" >
+        last_editor,
+      </if>
+      <if test="lastEditTime != null" >
+        last_edit_time,
+      </if>
+      <if test="pictureOne != null" >
+        picture_one,
+      </if>
+      <if test="pictureTwo != null" >
+        picture_two,
+      </if>
+      <if test="pictureThree != null" >
+        picture_three,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="texts != null" >
+        #{texts,jdbcType=VARCHAR},
+      </if>
+      <if test="voice != null" >
+        #{voice,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="lastEditor != null" >
+        #{lastEditor,jdbcType=INTEGER},
+      </if>
+      <if test="lastEditTime != null" >
+        #{lastEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pictureOne != null" >
+        #{pictureOne,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureTwo != null" >
+        #{pictureTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureThree != null" >
+        #{pictureThree,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="edu.hdu.lab.model.SuggestionExample" resultType="java.lang.Integer" >
+    select count(*) from suggestion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update suggestion
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.texts != null" >
+        texts = #{record.texts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voice != null" >
+        voice = #{record.voice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creator != null" >
+        creator = #{record.creator,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastEditor != null" >
+        last_editor = #{record.lastEditor,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastEditTime != null" >
+        last_edit_time = #{record.lastEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pictureOne != null" >
+        picture_one = #{record.pictureOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pictureTwo != null" >
+        picture_two = #{record.pictureTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pictureThree != null" >
+        picture_three = #{record.pictureThree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comment != null" >
+        comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update suggestion
+    set id = #{record.id,jdbcType=INTEGER},
+      texts = #{record.texts,jdbcType=VARCHAR},
+      voice = #{record.voice,jdbcType=VARCHAR},
+      creator = #{record.creator,jdbcType=INTEGER},
+      last_editor = #{record.lastEditor,jdbcType=INTEGER},
+      last_edit_time = #{record.lastEditTime,jdbcType=TIMESTAMP},
+      picture_one = #{record.pictureOne,jdbcType=VARCHAR},
+      picture_two = #{record.pictureTwo,jdbcType=VARCHAR},
+      picture_three = #{record.pictureThree,jdbcType=VARCHAR},
+      comment = #{record.comment,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.model.Suggestion" >
+    update suggestion
+    <set >
+      <if test="texts != null" >
+        texts = #{texts,jdbcType=VARCHAR},
+      </if>
+      <if test="voice != null" >
+        voice = #{voice,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="lastEditor != null" >
+        last_editor = #{lastEditor,jdbcType=INTEGER},
+      </if>
+      <if test="lastEditTime != null" >
+        last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pictureOne != null" >
+        picture_one = #{pictureOne,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureTwo != null" >
+        picture_two = #{pictureTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureThree != null" >
+        picture_three = #{pictureThree,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.model.Suggestion" >
+    update suggestion
+    set texts = #{texts,jdbcType=VARCHAR},
+      voice = #{voice,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=INTEGER},
+      last_editor = #{lastEditor,jdbcType=INTEGER},
+      last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP},
+      picture_one = #{pictureOne,jdbcType=VARCHAR},
+      picture_two = #{pictureTwo,jdbcType=VARCHAR},
+      picture_three = #{pictureThree,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+<!--user defined maps  -->
+  <resultMap id="SuggestionMapper" type="edu.hdu.lab.model.Suggestion" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="texts" property="texts" jdbcType="VARCHAR" />
+    <result column="voice" property="voice" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="INTEGER" />
+    <result column="last_editor" property="lastEditor" jdbcType="INTEGER" />
+    <result column="last_edit_time" property="lastEditTime" jdbcType="TIMESTAMP" />
+    <result column="picture_one" property="pictureOne" jdbcType="VARCHAR" />
+    <result column="picture_two" property="pictureTwo" jdbcType="VARCHAR" />
+    <result column="picture_three" property="pictureThree" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="room" property="room" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getSuggestions" resultMap="SuggestionMapper" parameterType="edu.hdu.lab.model.Suggestion" >
+    select
+      suggestion.id as id,
+      suggestion.texts as texts,
+      suggestion.voice as voice,
+      suggestion.last_edit_time as last_edit_time,
+      suggestion.picture_one as picture_one,
+      suggestion.picture_two as picture_two,
+      suggestion.picture_three as picture_three,user.name as name,
+      user.room as room,
+      suggestion.last_editor as  last_editor,
+      suggestion.creator as creator,
+      suggestion.status as status,
+      suggestion.comment as comment,
+      suggestion.type as type
+    from
+      suggestion,user
+      <where>
+        suggestion.creator = user.id
+        <if test="creator != null">
+            and suggestion.creator = #{creator}
+        </if>
+        <if test="startTime != null">
+            and suggestion.last_edit_time &gt;= #{startTime}
+        </if>
+        <if test="endTime != null">
+            and suggestion.last_edit_time &lt;= #{endTime}
+        </if>
+      </where>
+        order by field(suggestion.status, '0', '1'), suggestion.last_edit_time desc
+        <if test="offset != null and size != null">
+             limit #{offset},#{size}
+        </if>           
+  </select>    
+</mapper>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.hdu.lab.mapper.GroceryFeedbackMapper" >
+  <resultMap id="BaseResultMap" type="edu.hdu.lab.model.GroceryFeedback" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="rate" property="rate" jdbcType="INTEGER" />
+    <result column="texts" property="texts" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="INTEGER" />
+    <result column="last_editor" property="lastEditor" jdbcType="INTEGER" />
+    <result column="last_edit_time" property="lastEditTime" jdbcType="TIMESTAMP" />
+    <result column="grocery" property="grocery" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, rate, texts, creator, last_editor, last_edit_time, grocery
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.model.GroceryFeedbackExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from grocery_feedback
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from grocery_feedback
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from grocery_feedback
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="edu.hdu.lab.model.GroceryFeedbackExample" >
+    delete from grocery_feedback
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="edu.hdu.lab.model.GroceryFeedback" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into grocery_feedback (rate, texts, creator, 
+      last_editor, last_edit_time, grocery
+      )
+    values (#{rate,jdbcType=INTEGER}, #{texts,jdbcType=VARCHAR}, #{creator,jdbcType=INTEGER}, 
+      #{lastEditor,jdbcType=INTEGER}, #{lastEditTime,jdbcType=TIMESTAMP}, #{grocery,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hdu.lab.model.GroceryFeedback" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into grocery_feedback
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rate != null" >
+        rate,
+      </if>
+      <if test="texts != null" >
+        texts,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="lastEditor != null" >
+        last_editor,
+      </if>
+      <if test="lastEditTime != null" >
+        last_edit_time,
+      </if>
+      <if test="grocery != null" >
+        grocery,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rate != null" >
+        #{rate,jdbcType=INTEGER},
+      </if>
+      <if test="texts != null" >
+        #{texts,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="lastEditor != null" >
+        #{lastEditor,jdbcType=INTEGER},
+      </if>
+      <if test="lastEditTime != null" >
+        #{lastEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="grocery != null" >
+        #{grocery,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="edu.hdu.lab.model.GroceryFeedbackExample" resultType="java.lang.Integer" >
+    select count(*) from grocery_feedback
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update grocery_feedback
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.rate != null" >
+        rate = #{record.rate,jdbcType=INTEGER},
+      </if>
+      <if test="record.texts != null" >
+        texts = #{record.texts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creator != null" >
+        creator = #{record.creator,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastEditor != null" >
+        last_editor = #{record.lastEditor,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastEditTime != null" >
+        last_edit_time = #{record.lastEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.grocery != null" >
+        grocery = #{record.grocery,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update grocery_feedback
+    set id = #{record.id,jdbcType=INTEGER},
+      rate = #{record.rate,jdbcType=INTEGER},
+      texts = #{record.texts,jdbcType=VARCHAR},
+      creator = #{record.creator,jdbcType=INTEGER},
+      last_editor = #{record.lastEditor,jdbcType=INTEGER},
+      last_edit_time = #{record.lastEditTime,jdbcType=TIMESTAMP},
+      grocery = #{record.grocery,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.model.GroceryFeedback" >
+    update grocery_feedback
+    <set >
+      <if test="rate != null" >
+        rate = #{rate,jdbcType=INTEGER},
+      </if>
+      <if test="texts != null" >
+        texts = #{texts,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="lastEditor != null" >
+        last_editor = #{lastEditor,jdbcType=INTEGER},
+      </if>
+      <if test="lastEditTime != null" >
+        last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="grocery != null" >
+        grocery = #{grocery,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.model.GroceryFeedback" >
+    update grocery_feedback
+    set rate = #{rate,jdbcType=INTEGER},
+      texts = #{texts,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=INTEGER},
+      last_editor = #{lastEditor,jdbcType=INTEGER},
+      last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP},
+      grocery = #{grocery,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!--user defined maps-->
+  <resultMap id="FeedBackMap" type="edu.hdu.lab.model.GroceryFeedback" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="rate" property="rate" jdbcType="INTEGER" />
+    <result column="texts" property="texts" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="INTEGER" />
+    <result column="last_editor" property="lastEditor" jdbcType="INTEGER" />
+    <result column="last_edit_time" property="lastEditTime" jdbcType="TIMESTAMP" />
+    <result column="grocery" property="grocery" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="room" property="room" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getAllFeebacksForOneGrocery" parameterType="java.lang.Integer" resultMap="FeedBackMap">
+    select grocery_feedback.id as id, grocery_feedback.rate as rate, grocery_feedback.texts as texts, grocery_feedback.creator as creator,
+    grocery_feedback.last_editor as last_editor, grocery_feedback.last_edit_time as last_edit_time, grocery_feedback.grocery as grocery,
+    user.name as name, user.room as room
+    from user,grocery_feedback
+    where 
+    grocery_feedback.grocery = #{groceryId,jdbcType=INTEGER}
+    and
+    user.id = grocery_feedback.creator      
+  </select>
+</mapper>

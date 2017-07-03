@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h3 class="modal-title">选择维修人员</h3>
+</div>
+<div class="modal-body">
+    <label for="worker-select"></label>
+    <select class="form-control" id="worker-select" 
+            ng-init="selectedWorker = selectedWorker || item[0]"
+            ng-model="selectedWorker"
+            ng-options="user as user.name for user in item">
+    </select>    
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="cancel()">取消</button>
+    <button class="btn btn-primary" ng-click="ok(selectedWorker)">确定</button>
+</div>

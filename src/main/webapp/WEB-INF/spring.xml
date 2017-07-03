@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans    
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd   
+        http://www.springframework.org/schema/tx    
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd    
+        http://www.springframework.org/schema/context    
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/util 
+        http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<context:property-placeholder location="WEB-INF/config.properties"
+		ignore-unresolvable="true" />
+		
+	<!-- 配置DataSource数据源 -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>WEB-INF/jdbc.properties</value>
+		</property>
+	</bean>
+	
+	<!-- 自动扫描（service） -->
+	<context:component-scan base-package="edu.hdu.lab.serviceImpls" />
+	
+	<bean id="dataSourceBootstrap" class="org.apache.commons.dbcp.BasicDataSource" >
+		<property name="driverClassName" value="${db.driver}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+		<property name="initialSize" value="${db.initialSize}" />
+		<property name="maxActive" value="${db.maxActive}" />
+		<property name="maxIdle" value="${db.maxActive}"></property>
+		<property name="maxWait" value="600"></property>
+		<property name="validationQuery" value="${db.validationQuery}" />
+		<property name="defaultAutoCommit" value="true"></property>
+	</bean>
+    
+    <util:map id="dataSourceTemplate" key-type="java.lang.String" value-type="java.lang.String" map-class="java.util.HashMap">
+		<entry key="driverClassName" value="${db.driver}" />
+		<entry key="url" value="${db.template.url}" />
+		<entry key="username" value="${db.username}" />
+		<entry key="password" value="${db.password}" />
+		<entry key="initialSize" value="${db.initialSize}" />
+		<entry key="maxActive" value="${db.maxActive}" />
+		<entry key="maxIdle" value="${db.maxActive}"/>
+		<entry key="maxWait" value="600" />
+		<entry key="validationQuery" value="${db.validationQuery}" />
+		<entry key="defaultAutoCommit" value="true"/>
+    </util:map>
+    
+    <!-- facade data source -->
+    <bean id="dataSource" class="edu.hdu.lab.datasource.DatasourceRouter">
+       <property name="targetDataSources">
+          <map>
+             <entry key="bootstrapDs" value-ref="dataSourceBootstrap"/>
+          </map>
+       </property>
+    </bean>
+        
+    <!-- wiring up for transaction-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/> 
+    
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	        <property name="dataSource" ref="dataSource"></property>
+	        <property name="mapperLocations" value="classpath:edu/hdu/lab/sqlMapper/*.xml"></property>
+    </bean>
+        
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="edu.hdu.lab.mapper"></property>
+    </bean>
+    
+    <util:map id="configMap" key-type="java.lang.String" value-type="java.lang.String" map-class="java.util.HashMap">
+        <entry key="androidVoiceFileFormat" value="amr"/>
+        <entry key="iOSVoiceFileFormat" value="aac" />
+        <entry key="baiduMapKey" value="${baidumap.key}"/>
+        <entry key="baiduMapHost" value="${baidumap.host}"/>
+        <entry key="baiduMapScheme" value="${baidumap.scheme}"/>
+        <entry key="baiduMapPath" value="${baidumap.path}"/>    
+    </util:map>
+
+ </beans>  	 	

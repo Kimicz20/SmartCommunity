@@ -1,0 +1,42 @@
+<div class="col-md-10 col-md-offset-1">
+<a id="add-worker-btn" class="btn btn-xs" href="#/advertise/new" title="新增广告">
+        <span class="sr-only">新增广告</span>
+        <span class="glyphicon glyphicon-plus"></span>
+        <span>新增广告</span>
+    </a>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th></th>
+            <th>类型</th>
+            <th>描述</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>负责人</th>
+            <th>详情</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="advertise in advertises">
+            <td>{{$index + 1}}</td>
+            <td>{{advertise.type}}</td>
+            <td>{{advertise.texts}}</td>
+            <td>{{advertise.startTime}}</td>
+            <td>{{advertise.dueTime}}</td>
+            <td>{{advertise.responsiblePersonName}}</td>
+            <td>
+                <a class="btn btn-primary"
+                   ng-href="#/advertise/detail/{{advertise.id}}">
+                    查看
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pager">
+            <li><a href="" ng-click="previous()"><span aria-hidden="true">&larr;&nbsp;</span>上一页</a></li>
+            <li><a href="" ng-click="next()">下一页<span aria-hidden="true">&nbsp;&rarr;</span></a></li>
+        </ul>
+    </nav>
+</div>

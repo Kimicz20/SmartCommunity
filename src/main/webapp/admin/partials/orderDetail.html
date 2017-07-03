@@ -1,0 +1,43 @@
+<div class="col-md-8 col-md-offset-2">
+    <form role="form" action="../order/edit" target="hidden_iframe" method="post" enctype="multipart/form-data" onsubmit="return checkBeforeSubmit('您确定要进行此操作吗？', this);">
+        <div class="form-group">
+            <label for="grocery_name">店铺名称：</label>
+            <input id="grocery_name" class="form-control" ng-model="grocery_name"  placeholder="请输入店铺名称……" disabled/>
+            <input id="grocery_id" class="form-control empty" name="id" ng-model="grocery_id"/>
+            <input id="grocery_callback" class="form-control empty" name="callback" value="parent.uploadCompleted"/>
+        </div>
+        <div id="radiosGroup" class="form-group">
+            <label class="radio-inline">
+                <input type="radio" ng-model="grocery_type" name="type" id="grocery_fruit" value="1" checked="checked"> 水果店
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="grocery_type" name="type" id="grocery_vegetable" value="2"> 蔬菜店
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="grocery_type" name="type" id="grocery_canteen" value="3"> 三餐店
+            </label>            
+        </div>
+        <div class="form-group">
+            <label for="grocery_phone">联系电话：</label>
+            <input id="grocery_phone" class="form-control" type="tel" ng-model="grocery_phone" name="phone" placeholder="请输入联系电话……" required="required"/>
+        </div>        
+        <div class="form-group">
+            <label for="grocery_description">店铺简介：</label>
+            <textarea id="grocery_description" class="form-control" rows="5" cols="20" name="intro" placeholder="请输入店铺简介……" ng-model="grocery_description" required="required"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="grocery_address">店铺地址：</label>
+            <textarea id="grocery_address" class="form-control" rows="5" cols="20" name="address" placeholder="请输入店铺地址……" ng-model="grocery_address" required="required"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="grocery_icon">店铺图片：</label>
+            <div>
+                <img ng-src="{{grocery_picture}}" class="img-thumbnail"  ng-class="{'empty':grocery_picture === undefined || grocery_picture === ''}">
+            </div>
+            <input id="grocery_icon" type="file" name="icon" />
+        </div>            
+        <button type="submit" class="btn btn-primary">保存</button>
+        <iframe id="hidden_iframe" class="empty" name="hidden_iframe"></iframe>
+        <div id="blank-footer"></div>
+    </form>
+</div>

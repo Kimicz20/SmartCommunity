@@ -1,0 +1,34 @@
+<div class="col-md-8 col-md-offset-2">
+    <form role="form" action="../order/products/edit" target="hidden_iframe" method="post" enctype="multipart/form-data" onsubmit="return checkBeforeSubmit('您确定要进行此操作吗？', this);">
+        <div class="form-group">
+            <label for="product_name">产品名称：</label>
+            <input id="product_name" class="form-control" ng-model="product_name" name="name" placeholder="请输入产品名称……" />
+            <input id="product_id" class="form-control empty" ng-model="product_id" name="productId"/>
+            <input id="product_callback" class="form-control empty" name="callback" value="parent.updateCompletedAndGoBack"/>
+        </div>
+        <div class="form-group">
+            <label for="product_price">价格：</label>
+            <input id="product_price" class="form-control" type="number" step="any" min="0" ng-model="product_price" name="price" placeholder="请输入价格……" required="required"/>
+        </div>        
+        <div class="form-group">
+            <label for="product_unit">价格单位：</label>
+            <input id="product_unit" class="form-control" ng-model="product_unit" name="unit" placeholder="请输入价格单位……" required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="product_intro">产品简介：</label>
+            <textarea id="product_intro" class="form-control" rows="5" cols="20" name="detail" placeholder="请输入产品简介……" ng-model="product_intro" required="required"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="grocery_icon">产品图片：</label>
+            <div>
+                <img ng-src="{{product_icon}}" class="img-thumbnail"  ng-class="{'empty': product_icon === undefined || product_icon === ''}">
+            </div>
+            <input id="grocery_icon" type="file" name="icon" />
+        </div>            
+        <button type="submit" class="btn btn-primary">保存</button>
+        <button type="button" class="btn btn-danger" ng-click="deleteProduct()">删除</button>
+        <button type="button" class="btn btn-default" onclick="goBack()">取消</button>
+        <iframe id="hidden_iframe" class="empty" name="hidden_iframe"></iframe>
+        <div id="blank-footer"></div>
+    </form>
+</div>

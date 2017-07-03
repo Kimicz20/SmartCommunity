@@ -1,0 +1,16 @@
+<div class="col-md-8 col-md-offset-2">
+    <alert ng-repeat="alert in alerts" type="{{alert.statusType}}" close="closeAlert($index)">{{alert.status}}</alert>
+    <form role="form" ng-submit="submitNewParcel(parcel_info,parcel_user)" autocomplete="off">
+        <div class="form-group">
+            <label for="parcel_info">邮包信息：</label>
+            <input id="parcel_info" class="form-control" ng-model="parcel_info" placeholder="请输入邮包信息……"/>
+        </div>
+        <div class="form-group">
+            <label for="parcel_user">住户：</label>
+            <input id="parcel_user" type="text" ng-model="parcel_user" placeholder="请输入住户名……" typeahead="user for user in searchUsers($viewValue,userRole)" typeahead-loading="loadingUsers" class="form-control">
+            <i ng-show="loadingUsers" class="glyphicon glyphicon-refresh"></i>            
+        </div>
+        <button type="submit" class="btn btn-primary" ng-disabled="isRequesting">{{isRequesting && '发送中……' || '发送'}}</button>
+        <button type="button" class="btn btn-default" ng-click="cleanInput()" ng-disabled="isRequesting">取消</button>
+    </form>
+</div>

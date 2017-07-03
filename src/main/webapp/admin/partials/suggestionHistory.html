@@ -1,0 +1,27 @@
+<div class="col-md-10 col-md-offset-1">
+    <div ng-if="suggestionItem.status === 0" class="ui horizontal divider">
+      <a class="ui red tag label">已受理</a>
+    </div> 
+    <div ng-if="suggestionItem.status === 1" class="ui horizontal divider">
+      <a class="ui teal tag label">已完成</a>
+    </div>     
+    <div ng-if="suggestionItem.comment" class="ui pointing left label leftmost-pos bubble">
+        回复：{{suggestionItem.comment}}
+    </div>
+    <form class="ui reply form reply-bubble">
+      <div class="field">
+          <textarea ng-model="comment"></textarea>
+      </div>
+        <div class="ui blue labeled submit icon button" ng-click="saveComment()" ng-class="{disabled: isProcessing}">
+        <i class="icon edit"></i> {{isProcessing ? '回复中……' : '回复'}}
+      </div>
+    </form>
+    <a ng-if="suggestionItem.status !== 1" class="ui teal button rightmost-pos" 
+       ng-click="updateStatus(1)">
+      标记为“已完成”
+    </a>    
+    <a class="ui button rightmost-pos" href="#/suggestion/show">
+      返回
+    </a>      
+    <div class="clean-float">&nbsp;</div>
+</div>

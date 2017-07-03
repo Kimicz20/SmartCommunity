@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h3 class="modal-title">业主报修详情</h3>
+    <a class="ui tag label status-tag" ng-href="#/repair/history/{{item.id}}" ng-click="ok()" ng-class="{red: 2 === item.isFixed, teal: 1 === item.isFixed}">{{item.statusText}}</a>
+</div>
+<div class="modal-body">
+    <div><strong>住户</strong>：{{item.room}} {{item.contact}}</div>
+    <div><strong>报修类别</strong>：{{item.typeDesc}}</div>
+    <div><strong>内容</strong>：{{item.texts}}</div>
+    <div ng-if="item.repairWorkerName"><strong>维修人员</strong>：{{item.repairWorkerName}}</div>
+    <div ng-if="item.repairWorkerPhone"><strong>维修人员联系电话</strong>：{{item.repairWorkerPhone}}</div>
+    <div><strong>报修提交时间</strong>：{{item.lastEditTime}}</div>
+    <div>
+        <strong>用户期望维修时间：</strong>
+        <p ng-repeat="time in item.times">{{time}}</p>
+    </div>
+    <div id="download-and-play" ng-class="{'empty':!isIe || item.voice === undefined || item.voice === ''}">
+        <a class="btn btn-default" href="../static/{{item.voice}}">
+            <span class="sr-only">播放语音</span>
+            <span class="glyphicon glyphicon-volume-up"></span>
+        </a>
+    </div>
+    <div id="click-and-play" ng-class="{'empty':isIe || item.voice === undefined || item.voice === ''}">
+        <button class="btn btn-default" ng-click="playme(item.voice)" title="播放语音">
+            <span class="sr-only">播放语音</span>
+            <span class="glyphicon glyphicon-volume-up"></span>
+        </button>
+    </div>
+    <div>
+        <a ng-repeat="picture in item.pictures" href="../static/{{picture}}">
+            <img ng-src="../static/{{picture}}" class="img-thumbnail modal-img" ng-class="{'empty':picture === undefined || picture === ''}">
+        </a>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">好的，知道了</button>
+</div>

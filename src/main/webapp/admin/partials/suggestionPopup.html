@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h3 class="modal-title">投诉建议详情</h3>
+    <a class="ui tag label status-tag" 
+       ng-href="#/suggestion/history/{{item.id}}" 
+       ng-click="ok()" 
+       ng-class="{'red': item.status === 0, 'teal': item.status === 1}">{{item.statusDesc}}</a>
+</div>
+<div class="modal-body">
+    <div><strong>住户</strong>：{{item.room}} {{item.name}}</div>
+    <div><strong>投诉建议类型</strong>：{{item.typeDesc}}</div>
+    <div><strong>内容</strong>：{{item.texts}}</div>
+    <div><strong>时间</strong>：{{item.lastEditTime}}</div>
+    <div id="download-and-play" ng-class="{'empty':!isIe || item.voice === undefined || item.voice === ''}">
+        <a class="btn btn-default" href="../static/{{item.voice}}">            
+            <span class="sr-only">播放语音</span>
+            <span class="glyphicon glyphicon-volume-up"></span>
+        </a>
+    </div>
+    <div id="click-and-play" ng-class="{'empty':isIe || item.voice === undefined || item.voice === ''}">
+        <button class="btn btn-default" ng-click="playme(item.voice)" title="播放语音">
+            <span class="sr-only">播放语音</span>
+            <span class="glyphicon glyphicon-volume-up"></span>
+        </button>
+    </div>
+    <div>
+        <a ng-repeat="picture in item.pictures" href="../static/{{picture}}">
+            <img ng-src="../static/{{picture}}" class="img-thumbnail modal-img" ng-class="{'empty':picture === undefined || picture === ''}">
+        </a>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">好的，知道了</button>
+</div>

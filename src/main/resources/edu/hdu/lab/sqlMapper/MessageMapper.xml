@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.hdu.lab.mapper.MessageMapper" >
+  <resultMap id="BaseResultMap" type="edu.hdu.lab.model.Message" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="receiver" property="receiver" jdbcType="INTEGER" />
+    <result column="sender" property="sender" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="parent_obj_id" property="parentObjId" jdbcType="INTEGER" />
+    <result column="this_obj_id" property="thisObjId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, receiver, sender, type, created_time, status, parent_obj_id, this_obj_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.model.MessageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="edu.hdu.lab.model.MessageExample" >
+    delete from message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="edu.hdu.lab.model.Message" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into message (receiver, sender, type, 
+      created_time, status, parent_obj_id, 
+      this_obj_id)
+    values (#{receiver,jdbcType=INTEGER}, #{sender,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{parentObjId,jdbcType=INTEGER}, 
+      #{thisObjId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hdu.lab.model.Message" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="receiver != null" >
+        receiver,
+      </if>
+      <if test="sender != null" >
+        sender,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="parentObjId != null" >
+        parent_obj_id,
+      </if>
+      <if test="thisObjId != null" >
+        this_obj_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="receiver != null" >
+        #{receiver,jdbcType=INTEGER},
+      </if>
+      <if test="sender != null" >
+        #{sender,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="parentObjId != null" >
+        #{parentObjId,jdbcType=INTEGER},
+      </if>
+      <if test="thisObjId != null" >
+        #{thisObjId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="edu.hdu.lab.model.MessageExample" resultType="java.lang.Integer" >
+    select count(*) from message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update message
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiver != null" >
+        receiver = #{record.receiver,jdbcType=INTEGER},
+      </if>
+      <if test="record.sender != null" >
+        sender = #{record.sender,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdTime != null" >
+        created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentObjId != null" >
+        parent_obj_id = #{record.parentObjId,jdbcType=INTEGER},
+      </if>
+      <if test="record.thisObjId != null" >
+        this_obj_id = #{record.thisObjId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update message
+    set id = #{record.id,jdbcType=INTEGER},
+      receiver = #{record.receiver,jdbcType=INTEGER},
+      sender = #{record.sender,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      parent_obj_id = #{record.parentObjId,jdbcType=INTEGER},
+      this_obj_id = #{record.thisObjId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.model.Message" >
+    update message
+    <set >
+      <if test="receiver != null" >
+        receiver = #{receiver,jdbcType=INTEGER},
+      </if>
+      <if test="sender != null" >
+        sender = #{sender,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="parentObjId != null" >
+        parent_obj_id = #{parentObjId,jdbcType=INTEGER},
+      </if>
+      <if test="thisObjId != null" >
+        this_obj_id = #{thisObjId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.model.Message" >
+    update message
+    set receiver = #{receiver,jdbcType=INTEGER},
+      sender = #{sender,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      parent_obj_id = #{parentObjId,jdbcType=INTEGER},
+      this_obj_id = #{thisObjId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!--User defined maps-->
+  <resultMap id="MessageMap" type="edu.hdu.lab.model.Message" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="receiver" property="receiver" jdbcType="INTEGER" />
+    <result column="sender" property="sender" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="parent_obj_id" property="parentObjId" jdbcType="INTEGER" />
+    <result column="this_obj_id" property="thisObjId" jdbcType="INTEGER" />
+    <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
+    <result column="receiver_icon" property="receiverIcon" jdbcType="VARCHAR" />
+    <result column="sender_name" property="senderName" jdbcType="VARCHAR" />
+    <result column="sender_icon" property="senderIcon" jdbcType="VARCHAR" />
+  </resultMap>  
+  <select id="getMessageList" resultMap="MessageMap" parameterType="edu.hdu.lab.model.Message" >
+        select 
+            message.id as id,
+            message.receiver as receiver,
+            user_receiver.name as receiver_name,
+            user_receiver.icon as receiver_icon,
+            message.sender as sender,
+            user_sender.name as sender_name,
+            user_sender.icon as sender_icon,
+            message.type as type,
+            message.status as status,
+            message.parent_obj_id as parent_obj_id,
+            message.this_obj_id as this_obj_id 
+        from 
+            message
+        left join user user_receiver
+            on message.receiver = user_receiver.id
+        left join user user_sender
+            on message.sender = user_sender.id
+      <where>
+          <if test="receiver != null">
+              AND receiver = #{receiver,jdbcType=INTEGER}
+          </if>
+          <if test="sender != null">
+              AND sender = #{sender,jdbcType=INTEGER}
+          </if>
+          <if test="type != null">
+              AND type = #{type,jdbcType=INTEGER}
+          </if>
+          <if test="createdTime != null">
+              AND createdTime = #{createdTime,jdbcType=TIMESTAMP}
+          </if>
+          <if test="status != null">
+              AND status = #{status,jdbcType=INTEGER}
+          </if> 
+          <if test="parentObjId != null">
+              AND parentObjId = #{parentObjId,jdbcType=INTEGER}
+          </if> 
+          <if test="thisObjId != null">
+              AND thisObjId = #{thisObjId,jdbcType=INTEGER}
+          </if>                                        
+      </where>
+  </select>  
+  <select id="getUnreadMessagesNumber" resultType="java.lang.Integer" parameterType="edu.hdu.lab.model.Message" >
+        select 
+            count(*)
+        from 
+            message
+      <where>
+          <if test="receiver != null">
+              AND receiver = #{receiver,jdbcType=INTEGER}
+          </if>
+          <if test="sender != null">
+              AND sender = #{sender,jdbcType=INTEGER}
+          </if>
+          <if test="type != null">
+              AND type = #{type,jdbcType=INTEGER}
+          </if>
+          <if test="createdTime != null">
+              AND createdTime = #{createdTime,jdbcType=TIMESTAMP}
+          </if>
+          <if test="status != null">
+              AND status = #{status,jdbcType=INTEGER}
+          </if> 
+          <if test="parentObjId != null">
+              AND parentObjId = #{parentObjId,jdbcType=INTEGER}
+          </if> 
+          <if test="thisObjId != null">
+              AND thisObjId = #{thisObjId,jdbcType=INTEGER}
+          </if>                                        
+      </where>
+  </select>    
+</mapper>

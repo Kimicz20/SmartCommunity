@@ -1,0 +1,61 @@
+<div class="col-md-8 col-md-offset-2">
+    <form role="form" action="../life/edit" target="hidden_iframe" method="post" enctype="multipart/form-data" onsubmit="return checkBeforeSubmit('您确定要进行此操作吗？', this);">
+        <div class="form-group">
+            <label for="life_name">商家名称：</label>
+            <input id="life_name" class="form-control" ng-model="life_name" disabled/>
+            <input id="life_id" class="form-control empty" name="id" ng-model="life_id"/>
+            <input id="life_callback" class="form-control empty" name="callback" value="parent.lifeEditCompletedAndGoBack"/>
+        </div>
+        <div id="radiosGroup" class="form-group">
+            <label class="radio-inline">
+                <input type="radio" ng-model="life_type" name="type" id="life_edu" value="1" checked="checked"> 教育
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="life_type" name="type" id="life_entertain" value="2"> 休闲
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="life_type" name="type" id="life_housekeeping" value="3"> 家政
+            </label> 
+            <label class="radio-inline">
+              <input type="radio" ng-model="life_type" name="type" id="life_misc" value="4"> 其他
+            </label> 
+        </div>
+        <div class="form-group">
+            <label for="life_phone">联系电话：</label>
+            <input id="life_phone" class="form-control" type="tel" ng-model="life_phone" name="tel" placeholder="请输入联系电话……" required="required"/>
+        </div>        
+        <div class="form-group">
+            <label for="life_intro">商家简介：</label>
+            <input id="life_intro" class="form-control" type="tel" ng-model="life_intro" name="intro" placeholder="请输入商家简介……" required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="life_desc">商家详情：</label>
+            <textarea id="life_desc" class="form-control" rows="5" cols="20" name="desc" placeholder="请输入商家详情……" ng-model="life_desc" required="required"></textarea>
+        </div>        
+        <div class="form-group">
+            <label for="life_address">商家地址：</label>
+            <textarea id="life_address" class="form-control" rows="5" cols="20" name="address" placeholder="请输入商家地址……" ng-model="life_address" required="required"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="life_discount">打折优惠：</label>
+            <textarea id="life_discount" class="form-control" rows="5" cols="20" name="discount" placeholder="请输入打折优惠信息……" ng-model="life_discount"></textarea>
+        </div>        
+        <div class="form-group">
+            <label for="life_icon">商家图片（小图）：</label>
+            <div>
+                <img ng-src="{{life_icon}}" class="img-thumbnail"  ng-class="{'empty':life_icon === undefined || life_icon === ''}">
+            </div>
+            <input id="life_icon" type="file" name="icon" />
+        </div>           
+        <div class="form-group">
+            <label for="life_picture">商家图片（大图）：</label>
+            <div>
+                <img ng-src="{{life_picture}}" class="img-thumbnail"  ng-class="{'empty':life_picture === undefined || life_picture === ''}">
+            </div>
+            <input id="life_picture" type="file" name="picture" />
+        </div>         
+        <button type="submit" class="btn btn-primary">保存</button>
+        <iframe id="hidden_iframe" class="empty" name="hidden_iframe"></iframe>
+        <div id="blank-footer"></div>
+    </form>
+</div>

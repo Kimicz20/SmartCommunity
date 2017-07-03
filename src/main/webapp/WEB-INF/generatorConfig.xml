@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry location="/home/justin/.m2/repository/mysql/mysql-connector-java/5.1.31/mysql-connector-java-5.1.31.jar" />
+	<context id="context1">
+		<commentGenerator>
+			<!-- 去除自动生成的注释 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/smart_community?useUnicode=true&amp;characterEncoding=UTF-8"
+			userId="root" password="102030" />
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<javaModelGenerator targetPackage="edu.hdu.lab.model"
+			targetProject="smartCommunity">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="edu.hdu.lab.sqlMapper"
+			targetProject="smartCommunity">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="edu.hdu.lab.mapper" targetProject="smartCommunity">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<table tableName="family" domainObjectName="Family">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="family_comment" domainObjectName="FamilyComment">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="grocery" domainObjectName="Grocery">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>                
+		<table tableName="grocery_feedback" domainObjectName="GroceryFeedback">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="life" domainObjectName="Life">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="notification" domainObjectName="Notification">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="notification_read" domainObjectName="NotificationRead">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="parcel" domainObjectName="Parcel">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="phone_number" domainObjectName="PhoneNumber">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="product" domainObjectName="Product">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="repair" domainObjectName="Repair">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="suggestion" domainObjectName="Suggestion">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="user" domainObjectName="User">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>                                                                    																									
+		<table tableName="message" domainObjectName="Message">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>     
+		<table tableName="repair_history" domainObjectName="RepairHistory">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="suggestion_history" domainObjectName="SuggestionHistory">
+			<generatedKey column="id" identity="true"
+				sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="advertise" domainObjectName="Advertise">
+			<generatedKey column="id" identity="true"
+						  sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+		<table tableName="advertise_click" domainObjectName="AdvertiseClick">
+			<generatedKey column="id" identity="true"
+						  sqlStatement="SELECT LAST_INSERT_ID()"></generatedKey>
+		</table>
+	</context>
+</generatorConfiguration>

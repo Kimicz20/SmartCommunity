@@ -1,0 +1,39 @@
+<div class="col-md-10 col-md-offset-1">
+    <button id="refresh-btn" class="btn btn-default btn-xs"  title="刷新" onclick="refresh()">
+        <span class="sr-only">刷新</span>
+        <span class="glyphicon glyphicon-refresh"></span>
+        <span>刷新</span>
+    </button>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>报修者</th>
+          <th class="neg">内容</th>
+          <th>时间</th>
+          <th>详情</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr ng-repeat="item in items">
+            <td>{{$index + 1}}</td>
+            <td>{{item.room}} {{item.contact}}</td>
+            <td class="neg">{{item.texts}}</td>
+            <td>{{item.lastEditTime}}</td>
+            <td>
+                <button type="button" class="btn" 
+                        ng-click="open('',$index)" 
+                        ng-class="{'btn-default': 0 === item.isFixed, 'btn-danger': 2 === item.isFixed, 'btn-success': 1 === item.isFixed}">
+                    {{item.statusText}}
+                </button>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+    <nav>
+      <ul class="pager">
+          <li><a href="" ng-click="previous()"><span aria-hidden="true">&larr;&nbsp;</span>上一页</a></li>
+          <li><a href="" ng-click="next()">下一页<span aria-hidden="true">&nbsp;&rarr;</span></a></li>
+      </ul>
+    </nav>      
+</div>

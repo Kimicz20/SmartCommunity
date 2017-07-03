@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.hdu.lab.mapper.AdvertiseMapper" >
+  <resultMap id="BaseResultMap" type="edu.hdu.lab.model.Advertise" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="click_count" property="clickCount" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="due_time" property="dueTime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="texts" property="texts" jdbcType="VARCHAR" />
+    <result column="video" property="video" jdbcType="VARCHAR" />
+    <result column="responsible_person" property="responsiblePerson" jdbcType="INTEGER" />
+    <result column="hypelink" property="hypelink" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, click_count, start_time, due_time, type, picture, texts, video, responsible_person, 
+    hypelink
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.model.AdvertiseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from advertise
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from advertise
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from advertise
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="edu.hdu.lab.model.AdvertiseExample" >
+    delete from advertise
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="edu.hdu.lab.model.Advertise" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into advertise (click_count, start_time, due_time, 
+      type, picture, texts, 
+      video, responsible_person, hypelink
+      )
+    values (#{clickCount,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{dueTime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=INTEGER}, #{picture,jdbcType=VARCHAR}, #{texts,jdbcType=VARCHAR}, 
+      #{video,jdbcType=VARCHAR}, #{responsiblePerson,jdbcType=INTEGER}, #{hypelink,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hdu.lab.model.Advertise" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into advertise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clickCount != null" >
+        click_count,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="dueTime != null" >
+        due_time,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="texts != null" >
+        texts,
+      </if>
+      <if test="video != null" >
+        video,
+      </if>
+      <if test="responsiblePerson != null" >
+        responsible_person,
+      </if>
+      <if test="hypelink != null" >
+        hypelink,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clickCount != null" >
+        #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dueTime != null" >
+        #{dueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="texts != null" >
+        #{texts,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null" >
+        #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="responsiblePerson != null" >
+        #{responsiblePerson,jdbcType=INTEGER},
+      </if>
+      <if test="hypelink != null" >
+        #{hypelink,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="edu.hdu.lab.model.AdvertiseExample" resultType="java.lang.Integer" >
+    select count(*) from advertise
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update advertise
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.clickCount != null" >
+        click_count = #{record.clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dueTime != null" >
+        due_time = #{record.dueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.picture != null" >
+        picture = #{record.picture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.texts != null" >
+        texts = #{record.texts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.video != null" >
+        video = #{record.video,jdbcType=VARCHAR},
+      </if>
+      <if test="record.responsiblePerson != null" >
+        responsible_person = #{record.responsiblePerson,jdbcType=INTEGER},
+      </if>
+      <if test="record.hypelink != null" >
+        hypelink = #{record.hypelink,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update advertise
+    set id = #{record.id,jdbcType=INTEGER},
+      click_count = #{record.clickCount,jdbcType=INTEGER},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      due_time = #{record.dueTime,jdbcType=TIMESTAMP},
+      type = #{record.type,jdbcType=INTEGER},
+      picture = #{record.picture,jdbcType=VARCHAR},
+      texts = #{record.texts,jdbcType=VARCHAR},
+      video = #{record.video,jdbcType=VARCHAR},
+      responsible_person = #{record.responsiblePerson,jdbcType=INTEGER},
+      hypelink = #{record.hypelink,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.model.Advertise" >
+    update advertise
+    <set >
+      <if test="clickCount != null" >
+        click_count = #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dueTime != null" >
+        due_time = #{dueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="texts != null" >
+        texts = #{texts,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null" >
+        video = #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="responsiblePerson != null" >
+        responsible_person = #{responsiblePerson,jdbcType=INTEGER},
+      </if>
+      <if test="hypelink != null" >
+        hypelink = #{hypelink,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.model.Advertise" >
+    update advertise
+    set click_count = #{clickCount,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      due_time = #{dueTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=INTEGER},
+      picture = #{picture,jdbcType=VARCHAR},
+      texts = #{texts,jdbcType=VARCHAR},
+      video = #{video,jdbcType=VARCHAR},
+      responsible_person = #{responsiblePerson,jdbcType=INTEGER},
+      hypelink = #{hypelink,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--user defined maps-->
+  <resultMap id="AdvertiseMap" type="edu.hdu.lab.model.Advertise" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="click_count" property="clickCount" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="due_time" property="dueTime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="texts" property="texts" jdbcType="VARCHAR" />
+    <result column="video" property="video" jdbcType="VARCHAR" />
+    <result column="responsible_person" property="responsiblePerson" jdbcType="INTEGER" />
+    <result column="responsible_person_name" property="responsiblePersonName" jdbcType="VARCHAR" />
+    <result column="hypelink" property="hypelink" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getAdvertises" parameterType="edu.hdu.lab.model.Advertise" resultMap="AdvertiseMap">
+    select
+      advertise.id as id,
+      advertise.click_count as click_count,
+      advertise.start_time as start_time,
+      advertise.due_time as due_time,
+      advertise.type as type,
+      advertise.picture as picture,
+      advertise.texts as texts,
+      advertise.video as video,
+      advertise.responsible_person as responsible_person,
+      advertise.hypelink as hypelink,
+      user.name as responsible_person_name
+    from
+      advertise,user
+    where
+      user.id = advertise.responsible_person
+    order by
+      advertise.start_time DESC
+    <if test="offset != null and size != null">
+      limit #{offset},#{size}
+    </if>
+  </select>  
+</mapper>

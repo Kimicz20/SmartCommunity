@@ -1,0 +1,22 @@
+<div class="col-md-8 col-md-offset-2">
+    <alert ng-repeat="alert in alerts" type="{{alert.statusType}}" close="closeAlert($index)">{{alert.status}}</alert>
+    <form role="form" ng-submit="submitNoti(noti_title,noti_text,noti_type)">
+        <div class="form-group">
+            <label for="notif_title">通知标题：</label>
+            <input id="notif_title" class="form-control" ng-model="noti_title" placeholder="请输入通知标题……"/>
+        </div>
+        <div class="form-group">
+            <label for="notif_type">通知类型：</label>
+            <select id="notif_type" ng-init="noti_type=1" class="form-control" name="type" ng-model="noti_type">
+                <option value="1">普通</option>
+                <option value="2">必读</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="notif_text">通知正文：</label>
+            <textarea id="notif_text" class="form-control" rows="5" cols="20" placeholder="请输入通知正文……" ng-model="noti_text"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-disabled="isRequesting">{{isRequesting && '发送中……' || '发送'}}</button>
+        <button type="button" class="btn btn-default" ng-click="cleanInput()" ng-disabled="isRequesting">取消</button>
+    </form>
+</div>

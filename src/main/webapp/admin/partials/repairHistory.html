@@ -1,0 +1,68 @@
+<div class="col-md-10 col-md-offset-1">
+    <div ng-if="submittedList !== null && submittedList.length > 0" class="ui horizontal divider">
+      <a class="ui tag label">已提交</a>
+    </div>
+    <div ng-repeat="submiitedItem in submittedList">
+        <div ng-if="1 === submiitedItem.userRole && submiitedItem.comment" class="ui pointing left label leftmost-pos bubble">
+          {{submiitedItem.comment}}
+        </div>    
+        <div ng-if="1 === submiitedItem.userRole && submiitedItem.comment" class="clean-float"></div>
+        
+        <div ng-if="3 === submiitedItem.userRole && submiitedItem.comment" class="ui pointing right label rightmost-pos bubble">
+          {{submiitedItem.comment}}
+        </div>
+        <div ng-if="3 === submiitedItem.userRole && submiitedItem.comment" class="clean-float"></div>   
+    </div>
+    
+    <div ng-if="processingList !== null && processingList.length > 0" class="ui horizontal divider">
+      <a class="ui red tag label">处理中</a>
+    </div>
+    <div ng-repeat="processingItem in processingList">
+        <div ng-if="1 === processingItem.userRole && processingItem.comment" class="ui pointing left label leftmost-pos bubble">
+          {{processingItem.comment}}
+        </div>    
+        <div ng-if="1 === processingItem.userRole && processingItem.comment" class="clean-float"></div>
+        
+        <div ng-if="3 === processingItem.userRole && processingItem.comment" class="ui pointing right label rightmost-pos bubble">
+          {{processingItem.comment}}
+        </div>
+        <div ng-if="3 === processingItem.userRole && processingItem.comment" class="clean-float"></div>   
+    </div>
+    
+    <div ng-if="fixedList !== null && fixedList.length > 0" class="ui horizontal divider">
+      <a class="ui teal tag label">已完成</a>
+    </div>
+    <div ng-repeat="fixedItem in fixedList">
+        <div ng-if="1 === fixedItem.userRole && fixedItem.comment" class="ui pointing left label leftmost-pos bubble">
+          {{fixedItem.comment}}
+        </div>    
+        <div ng-if="1 === fixedItem.userRole && fixedItem.comment" class="clean-float"></div>
+        
+        <div ng-if="3 === fixedItem.userRole && fixedItem.comment" class="ui pointing right label rightmost-pos bubble">
+          {{fixedItem.comment}}
+        </div>
+        <div ng-if="3 === fixedItem.userRole && fixedItem.comment" class="clean-float"></div>   
+    </div> 
+    
+    <form class="ui reply form reply-bubble">
+      <div class="field">
+          <textarea ng-model="comment"></textarea>
+      </div>
+        <div class="ui blue labeled submit icon button" ng-click="addNewRepairHistory()" ng-class="{disabled: isProcessing}">
+        <i class="icon edit"></i> {{isProcessing ? '回复中……' : '回复'}}
+      </div>
+    </form>
+    <a class="ui button rightmost-pos" href="#/repair/show">
+      返回
+    </a>      
+    <a ng-if="repairNextStatus" class="ui button rightmost-pos" 
+        ng-class="{red: 2 === repairNextStatus, teal: 1 === repairNextStatus, disabled: isProcessing}" 
+        ng-click="updateRepairStatus()">
+      {{2 === repairNextStatus ? '标记为“处理中”' : '标记为“已完成”'}}
+    </a>
+    <a ng-if="1 === repairNextStatus" class="ui primary button rightmost-pos" 
+       ng-click="open('sm')">
+      选择维修人员...
+    </a>    
+    <div class="clean-float">&nbsp;</div>
+</div>
