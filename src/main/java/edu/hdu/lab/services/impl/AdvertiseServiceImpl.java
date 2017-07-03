@@ -1,4 +1,4 @@
-package edu.hdu.lab.serviceImpls;
+package edu.hdu.lab.services.impl;
 
 import edu.hdu.lab.mapper.AdvertiseClickMapper;
 import edu.hdu.lab.mapper.AdvertiseMapper;

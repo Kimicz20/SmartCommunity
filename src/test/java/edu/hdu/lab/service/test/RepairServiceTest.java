@@ -21,9 +21,9 @@ import org.springframework.util.Log4jConfigurer;
  *
  * @author justin
  */
-@ContextConfiguration(locations = { 
-        "file:src/main/webapp/WEB-INF/spring.xml",
-        "file:src/main/webapp/WEB-INF/spring-mvc.xml",
+@ContextConfiguration(locations = {
+        "file:../../../../../../../main/resources/spring/applicationContext-service.xml",
+        "file:../../../../../../../main/resources/spring/spring-mvc.xml",
         })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class RepairServiceTest {
@@ -43,7 +43,7 @@ public class RepairServiceTest {
     public void initDatasource() {
         userService.configDatasources("smart_community");
         try {
-            Log4jConfigurer.initLogging("file:src/main/webapp/WEB-INF/log4j.properties");
+            Log4jConfigurer.initLogging("file:src/main/webapp/WEB-INF/log4j88.properties");
         } catch (FileNotFoundException ex) {
             java.util.logging.Logger.getLogger(RepairServiceTest.class.getName()).log(Level.SEVERE, null, ex);
         }

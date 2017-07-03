@@ -1,3 +1,5 @@
+use smart_community_config;
+
 alter table parcel add is_received int after receiver;
 /* added by Yang, 2014.08.13 */
 alter table life add location varchar(50);

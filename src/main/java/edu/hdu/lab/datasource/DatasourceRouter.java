@@ -1,6 +1,3 @@
-/*
- */
-
 package edu.hdu.lab.datasource;
 
 import java.util.Map;
@@ -8,7 +5,6 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
  *
- * @author justin
  */
 public class DatasourceRouter extends AbstractRoutingDataSource {
     

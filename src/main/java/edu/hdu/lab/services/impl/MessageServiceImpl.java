@@ -1,7 +1,7 @@
 /*
  *  所有权归603实验室所有
  */
-package edu.hdu.lab.serviceImpls;
+package edu.hdu.lab.services.impl;
 
 import edu.hdu.lab.mapper.MessageMapper;
 import edu.hdu.lab.model.Message;

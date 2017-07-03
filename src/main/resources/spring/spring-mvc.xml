@@ -29,14 +29,13 @@
     </bean>
     
     <!-- 静态文件访问 -->
-    <!--<mvc:resources mapping="/static/**" location="file:/home/justin/Shares/smart_community_static_files/" />-->
     <mvc:resources mapping="/admin/**" location="/admin/" />
     
     <!-- 文件上传解析 -->
     <bean id="multipartResolver"
         class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
     
-    <!-- 定义拦截器 -->
+    <!-- 资源安全访问/定义拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
