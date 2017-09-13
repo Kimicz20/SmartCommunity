@@ -4,8 +4,9 @@
 
 package edu.hdu.lab.controllers;
 
-import edu.hdu.lab.model.Parcel;
-import edu.hdu.lab.model.User;
+import edu.hdu.lab.datasource.DataSource;
+import edu.hdu.lab.pojo.Parcel;
+import edu.hdu.lab.pojo.User;
 import edu.hdu.lab.services.ParcelService;
 import edu.hdu.lab.services.UserService;
 import edu.hdu.lab.utils.Constants;

@@ -4,8 +4,8 @@
 
 package edu.hdu.lab.services;
 
-import edu.hdu.lab.model.Repair;
-import edu.hdu.lab.model.RepairHistory;
+import edu.hdu.lab.pojo.Repair;
+import edu.hdu.lab.pojo.RepairHistory;
 import java.util.List;
 import java.util.Map;
 

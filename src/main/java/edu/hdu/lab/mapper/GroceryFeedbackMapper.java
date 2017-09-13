@@ -1,7 +1,7 @@
 package edu.hdu.lab.mapper;
 
-import edu.hdu.lab.model.GroceryFeedback;
-import edu.hdu.lab.model.GroceryFeedbackExample;
+import edu.hdu.lab.pojo.GroceryFeedback;
+import edu.hdu.lab.pojo.GroceryFeedbackExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

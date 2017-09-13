@@ -1,7 +1,7 @@
 package edu.hdu.lab.mapper;
 
-import edu.hdu.lab.model.Product;
-import edu.hdu.lab.model.ProductExample;
+import edu.hdu.lab.pojo.Product;
+import edu.hdu.lab.pojo.ProductExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

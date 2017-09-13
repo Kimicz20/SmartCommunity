@@ -4,8 +4,9 @@
 
 package edu.hdu.lab.controllers;
 
-import edu.hdu.lab.model.Notification;
-import edu.hdu.lab.model.NotificationRead;
+import edu.hdu.lab.datasource.DataSource;
+import edu.hdu.lab.pojo.Notification;
+import edu.hdu.lab.pojo.NotificationRead;
 import edu.hdu.lab.services.NotificationService;
 import edu.hdu.lab.utils.Constants;
 import edu.hdu.lab.utils.JsonUtils;

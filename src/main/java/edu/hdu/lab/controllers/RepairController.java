@@ -4,8 +4,9 @@
 
 package edu.hdu.lab.controllers;
 
-import edu.hdu.lab.model.Repair;
-import edu.hdu.lab.model.RepairHistory;
+import edu.hdu.lab.datasource.DataSource;
+import edu.hdu.lab.pojo.Repair;
+import edu.hdu.lab.pojo.RepairHistory;
 import edu.hdu.lab.services.RepairService;
 import edu.hdu.lab.utils.Constants;
 import edu.hdu.lab.utils.JsonUtils;

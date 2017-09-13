@@ -1,7 +1,7 @@
 package edu.hdu.lab.mapper;
 
-import edu.hdu.lab.model.RepairHistory;
-import edu.hdu.lab.model.RepairHistoryExample;
+import edu.hdu.lab.pojo.RepairHistory;
+import edu.hdu.lab.pojo.RepairHistoryExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

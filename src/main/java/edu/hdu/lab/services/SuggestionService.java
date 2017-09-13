@@ -4,7 +4,7 @@
 
 package edu.hdu.lab.services;
 
-import edu.hdu.lab.model.Suggestion;
+import edu.hdu.lab.pojo.Suggestion;
 import java.util.List;
 
 /**

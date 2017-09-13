@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.hdu.lab.mapper.AdvertiseClickMapper" >
-  <resultMap id="BaseResultMap" type="edu.hdu.lab.model.AdvertiseClick" >
+  <resultMap id="BaseResultMap" type="edu.hdu.lab.pojo.AdvertiseClick" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="click_time" property="clickTime" jdbcType="TIMESTAMP" />
     <result column="ad_id" property="adId" jdbcType="INTEGER" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List" >
     id, click_time, ad_id, user_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.model.AdvertiseClickExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.pojo.AdvertiseClickExample" >
     select
     <if test="distinct" >
       distinct
@@ -92,13 +92,13 @@
     delete from advertise_click
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.hdu.lab.model.AdvertiseClickExample" >
+  <delete id="deleteByExample" parameterType="edu.hdu.lab.pojo.AdvertiseClickExample" >
     delete from advertise_click
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.hdu.lab.model.AdvertiseClick" >
+  <insert id="insert" parameterType="edu.hdu.lab.pojo.AdvertiseClick" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -107,7 +107,7 @@
     values (#{clickTime,jdbcType=TIMESTAMP}, #{adId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="edu.hdu.lab.model.AdvertiseClick" >
+  <insert id="insertSelective" parameterType="edu.hdu.lab.pojo.AdvertiseClick" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -135,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.hdu.lab.model.AdvertiseClickExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="edu.hdu.lab.pojo.AdvertiseClickExample" resultType="java.lang.Integer" >
     select count(*) from advertise_click
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -171,7 +171,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.model.AdvertiseClick" >
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.pojo.AdvertiseClick" >
     update advertise_click
     <set >
       <if test="clickTime != null" >
@@ -186,7 +186,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.model.AdvertiseClick" >
+  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.pojo.AdvertiseClick" >
     update advertise_click
     set click_time = #{clickTime,jdbcType=TIMESTAMP},
       ad_id = #{adId,jdbcType=INTEGER},
@@ -195,7 +195,7 @@
   </update>
 
   <!-- user defined maps and methods-->
-  <resultMap id="AdvertiseClickMap" type="edu.hdu.lab.model.AdvertiseClick" >
+  <resultMap id="AdvertiseClickMap" type="edu.hdu.lab.pojo.AdvertiseClick" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="click_time" property="clickTime" jdbcType="TIMESTAMP" />
     <result column="ad_id" property="adId" jdbcType="INTEGER" />
@@ -205,7 +205,7 @@
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
   </resultMap>
 
-  <select id="getAdvertiseClicks" parameterType="edu.hdu.lab.model.AdvertiseClick" resultMap="AdvertiseClickMap">
+  <select id="getAdvertiseClicks" parameterType="edu.hdu.lab.pojo.AdvertiseClick" resultMap="AdvertiseClickMap">
     select
       advertise_click.id as id,
       advertise_click.click_time as click_time,

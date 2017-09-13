@@ -4,28 +4,26 @@
 
 package edu.hdu.lab.controllers;
 
-import edu.hdu.lab.model.Community;
-import edu.hdu.lab.model.User;
+import edu.hdu.lab.datasource.DataSource;
+import edu.hdu.lab.datasource.DynamicDataSourceHolder;
+import edu.hdu.lab.pojo.User;
 import edu.hdu.lab.services.UserService;
 import edu.hdu.lab.utils.Constants;
 import edu.hdu.lab.utils.JsonUtils;
 import edu.hdu.lab.utils.WebUtils;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 /**
  * 用户管理控制器
@@ -44,20 +42,15 @@ public class UserController {
     
     @ResponseBody
     @RequestMapping(value="/user/login", method=RequestMethod.POST, produces = "text/html;charset=UTF-8")
+    @DataSource
     public String authorize(@RequestParam("user") String user,
                             @RequestParam("pwd") String pwd,
-                            @RequestParam("place") String place,
                             @RequestParam("role") int role,
+                            @RequestParam("place") String place,
                             HttpServletRequest request) {
+        DynamicDataSourceHolder.setDataSource(place);
         user = user.trim();
         pwd = pwd.trim();
-        place = place.trim();
-        
-        int configResult = userService.configDatasources(place);
-        
-        if (configResult == Constants.RESULT_CODE_PLACE_NOT_EXISTS)
-            return WebUtils.generateResult(configResult);
-        
         //开始验证用户名、密码、角色
         List<User> list = userService.getUser(user, pwd, role);
         int resultCode = list == null ? 0 : list.size();
@@ -70,7 +63,6 @@ public class UserController {
                 businessType = userService.validateBusinessUser(user);
             
             request.getSession().setAttribute("user", user);
-            request.getSession().setAttribute("place", place);
             request.getSession().setAttribute("pwd", pwd);
             request.getSession().setAttribute("role", role);
             request.getSession().setAttribute("userId", list.get(0).getId());
@@ -112,12 +104,6 @@ public class UserController {
                           @RequestParam(value = "businessType", required = false) Integer businessType,
                           @RequestParam("place") String place,
                           @RequestParam("pwd") String pwd) {
-        
-        place = place.trim();
-        int configResult = userService.configDatasources(place);
-        
-        if (configResult == Constants.RESULT_CODE_PLACE_NOT_EXISTS)
-            return WebUtils.generateResult(configResult);        
         
         User u = new User();
         u.setName(user);
@@ -216,17 +202,7 @@ public class UserController {
         
         return WebUtils.generateResult(1);
     }
-    
-    @ResponseBody
-    @RequestMapping(value="/user/community", method=RequestMethod.GET, produces = "text/html;charset=UTF-8")       
-    public String getAllCommunities() {
-        userService.initDatasource();
-        
-        List<Community> communities = userService.getAllCommunities();
-        
-        return JsonUtils.createGson().toJson(communities);
-    }
-    
+
     @ResponseBody
     @RequestMapping(value="/user/search", method=RequestMethod.GET, produces = "text/html;charset=UTF-8")     
     public String getUsersInstantly(@RequestParam(value = "role", required = false) Integer role,

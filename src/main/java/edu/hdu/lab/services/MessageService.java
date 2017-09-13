@@ -3,7 +3,7 @@
  */
 package edu.hdu.lab.services;
 
-import edu.hdu.lab.model.Message;
+import edu.hdu.lab.pojo.Message;
 import java.util.List;
 
 /**

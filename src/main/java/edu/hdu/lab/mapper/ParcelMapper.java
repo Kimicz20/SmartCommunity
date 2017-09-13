@@ -1,7 +1,7 @@
 package edu.hdu.lab.mapper;
 
-import edu.hdu.lab.model.Parcel;
-import edu.hdu.lab.model.ParcelExample;
+import edu.hdu.lab.pojo.Parcel;
+import edu.hdu.lab.pojo.ParcelExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

@@ -4,9 +4,9 @@
 
 package edu.hdu.lab.services;
 
-import edu.hdu.lab.model.Grocery;
-import edu.hdu.lab.model.GroceryFeedback;
-import edu.hdu.lab.model.Product;
+import edu.hdu.lab.pojo.Grocery;
+import edu.hdu.lab.pojo.GroceryFeedback;
+import edu.hdu.lab.pojo.Product;
 import java.util.List;
 import java.util.Map;
 

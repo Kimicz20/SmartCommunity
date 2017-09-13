@@ -4,7 +4,7 @@
 
 package edu.hdu.lab.services;
 
-import edu.hdu.lab.model.Parcel;
+import edu.hdu.lab.pojo.Parcel;
 import java.util.List;
 import java.util.Map;
 

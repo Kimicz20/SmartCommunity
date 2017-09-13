@@ -4,8 +4,8 @@
 
 package edu.hdu.lab.services;
 
-import edu.hdu.lab.model.Family;
-import edu.hdu.lab.model.FamilyComment;
+import edu.hdu.lab.pojo.Family;
+import edu.hdu.lab.pojo.FamilyComment;
 import java.util.List;
 import java.util.Map;
 

@@ -4,7 +4,7 @@
 
 package edu.hdu.lab.services;
 
-import edu.hdu.lab.model.Life;
+import edu.hdu.lab.pojo.Life;
 import java.util.List;
 import java.util.Map;
 

@@ -5,7 +5,7 @@
 package edu.hdu.lab.services.impl;
 
 import edu.hdu.lab.mapper.SuggestionMapper;
-import edu.hdu.lab.model.Suggestion;
+import edu.hdu.lab.pojo.Suggestion;
 import edu.hdu.lab.services.SuggestionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

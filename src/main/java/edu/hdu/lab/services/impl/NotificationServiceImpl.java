@@ -6,9 +6,9 @@ package edu.hdu.lab.services.impl;
 
 import edu.hdu.lab.mapper.NotificationMapper;
 import edu.hdu.lab.mapper.NotificationReadMapper;
-import edu.hdu.lab.model.Notification;
-import edu.hdu.lab.model.NotificationRead;
-import edu.hdu.lab.model.NotificationReadExample;
+import edu.hdu.lab.pojo.Notification;
+import edu.hdu.lab.pojo.NotificationRead;
+import edu.hdu.lab.pojo.NotificationReadExample;
 import edu.hdu.lab.services.NotificationService;
 import java.util.List;
 import java.util.Map;

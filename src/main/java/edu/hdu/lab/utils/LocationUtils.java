@@ -5,11 +5,12 @@
 package edu.hdu.lab.utils;
 
 import com.google.gson.Gson;
-import edu.hdu.lab.model.GeoLocation;
-import java.net.URI;
+import edu.hdu.lab.pojo.GeoLocation;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.log4j.Logger;
+
+import java.net.URI;
 
 /**
  *

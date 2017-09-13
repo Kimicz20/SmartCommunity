@@ -2,17 +2,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:util="http://www.springframework.org/schema/util"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--资源文件配置-->
     <context:property-placeholder location="classpath:resource/*.properties"
                                   ignore-unresolvable="true" />
 
-    <!--Bootstrap 数据源-->
-    <bean id="dataSourceBootstrap" class="com.alibaba.druid.pool.DruidDataSource" >
+    <!--多组数据源-->
+    <bean id="smart_community" class="com.alibaba.druid.pool.DruidDataSource" >
         <property name="driverClassName" value="${db.driver}" />
-        <property name="url" value="${db.url}" />
+        <property name="url" value="${db.db1.url}" />
         <property name="username" value="${db.username}" />
         <property name="password" value="${db.password}" />
         <property name="initialSize" value="${db.initialSize}" />
@@ -22,35 +24,39 @@
         <property name="defaultAutoCommit" value="true"></property>
     </bean>
 
-    <util:map id="dataSourceTemplate" key-type="java.lang.String" value-type="java.lang.String" map-class="java.util.HashMap">
-        <entry key="driverClassName" value="${db.driver}" />
-        <entry key="url" value="${db.template.url}" />
-        <entry key="username" value="${db.username}" />
-        <entry key="password" value="${db.password}" />
-        <entry key="initialSize" value="${db.initialSize}" />
-        <entry key="maxActive" value="${db.maxActive}" />
-        <entry key="maxIdle" value="${db.maxActive}"/>
-        <entry key="maxWait" value="600" />
-        <entry key="validationQuery" value="${db.validationQuery}" />
-        <entry key="defaultAutoCommit" value="true"/>
-    </util:map>
+    <bean id="smart_community_config" class="com.alibaba.druid.pool.DruidDataSource" >
+        <property name="driverClassName" value="${db.driver}" />
+        <property name="url" value="${db.db2.url}" />
+        <property name="username" value="${db.username}" />
+        <property name="password" value="${db.password}" />
+        <property name="initialSize" value="${db.initialSize}" />
+        <property name="maxActive" value="${db.maxActive}" />
+        <property name="maxWait" value="600"></property>
+        <property name="validationQuery" value="${db.validationQuery}" />
+        <property name="defaultAutoCommit" value="true"></property>
+    </bean>
 
     <!--数据路由 选择数据库-->
-    <bean id="dataSource" class="edu.hdu.lab.datasource.DatasourceRouter">
+    <bean id="dataSource" class="edu.hdu.lab.datasource.DynamicDataSource">
         <property name="targetDataSources">
             <map>
-                <entry key="bootstrapDs" value-ref="dataSourceBootstrap"/>
+                <entry key="smart_community_config" value-ref="smart_community_config"/>
+                <entry key="smart_community" value-ref="smart_community"/>
             </map>
         </property>
+        <!-- 默认使用数据源 -->
+        <property name="defaultTargetDataSource" ref="smart_community"/>
     </bean>
 
     <!-- 让spring管理sqlsessionfactory 使用mybatis和spring整合包中的 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"></property>
+
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <!--mapper包扫描-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="edu.hdu.lab.mapper"></property>
+        <property name="basePackage" value="edu.hdu.lab.mapper"/>
     </bean>
+
 </beans>

@@ -1,10 +1,9 @@
 package edu.hdu.lab.mapper;
 
-import edu.hdu.lab.model.Advertise;
-import edu.hdu.lab.model.AdvertiseClick;
-import edu.hdu.lab.model.AdvertiseExample;
-import java.util.List;
+import edu.hdu.lab.pojo.Advertise;
+import edu.hdu.lab.pojo.AdvertiseExample;
 import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
 public interface AdvertiseMapper {
     int countByExample(AdvertiseExample example);
@@ -28,7 +27,7 @@ public interface AdvertiseMapper {
     int updateByPrimaryKeySelective(Advertise record);
 
     int updateByPrimaryKey(Advertise record);
-    
+
     // User defined methods
     List<Advertise> getAdvertises(Advertise ad);
 }

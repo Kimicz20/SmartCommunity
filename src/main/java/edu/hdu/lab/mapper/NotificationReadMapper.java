@@ -1,7 +1,7 @@
 package edu.hdu.lab.mapper;
 
-import edu.hdu.lab.model.NotificationRead;
-import edu.hdu.lab.model.NotificationReadExample;
+import edu.hdu.lab.pojo.NotificationRead;
+import edu.hdu.lab.pojo.NotificationReadExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

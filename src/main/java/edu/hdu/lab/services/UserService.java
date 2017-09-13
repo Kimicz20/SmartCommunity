@@ -4,8 +4,7 @@
 
 package edu.hdu.lab.services;
 
-import edu.hdu.lab.model.Community;
-import edu.hdu.lab.model.User;
+import edu.hdu.lab.pojo.User;
 import java.util.List;
 
 /**
@@ -21,11 +20,7 @@ public interface UserService {
     public int deleteUser(int id);
     
     public int updateUser(User user);
-    
-    public List<String> getAllDatabases();
-    
-    public List<Community> getAllCommunities();
-    
+
     public List<User> getUsers(User u);
     
     public List<User> getUsersInstantly(User u);
@@ -38,8 +33,4 @@ public interface UserService {
     public int validateBusinessUser(String name);
     
     public int addUser(User user, Integer businessType);
-    
-    public int configDatasources(String databaseName);
-    
-    public void initDatasource();
 }

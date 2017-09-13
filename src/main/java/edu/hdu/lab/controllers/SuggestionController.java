@@ -4,7 +4,8 @@
 
 package edu.hdu.lab.controllers;
 
-import edu.hdu.lab.model.Suggestion;
+import edu.hdu.lab.datasource.DataSource;
+import edu.hdu.lab.pojo.Suggestion;
 import edu.hdu.lab.services.SuggestionService;
 import edu.hdu.lab.utils.Constants;
 import edu.hdu.lab.utils.JsonUtils;

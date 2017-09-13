@@ -4,8 +4,9 @@
 
 package edu.hdu.lab.controllers;
 
-import edu.hdu.lab.model.Family;
-import edu.hdu.lab.model.FamilyComment;
+import edu.hdu.lab.datasource.DataSource;
+import edu.hdu.lab.pojo.Family;
+import edu.hdu.lab.pojo.FamilyComment;
 import edu.hdu.lab.services.FamilyService;
 import edu.hdu.lab.utils.Constants;
 import edu.hdu.lab.utils.JsonUtils;

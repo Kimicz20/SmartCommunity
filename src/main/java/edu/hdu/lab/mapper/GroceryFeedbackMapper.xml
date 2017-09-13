@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.hdu.lab.mapper.GroceryFeedbackMapper" >
-  <resultMap id="BaseResultMap" type="edu.hdu.lab.model.GroceryFeedback" >
+  <resultMap id="BaseResultMap" type="edu.hdu.lab.pojo.GroceryFeedback" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="rate" property="rate" jdbcType="INTEGER" />
     <result column="texts" property="texts" jdbcType="VARCHAR" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List" >
     id, rate, texts, creator, last_editor, last_edit_time, grocery
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.model.GroceryFeedbackExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.pojo.GroceryFeedbackExample" >
     select
     <if test="distinct" >
       distinct
@@ -95,13 +95,13 @@
     delete from grocery_feedback
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.hdu.lab.model.GroceryFeedbackExample" >
+  <delete id="deleteByExample" parameterType="edu.hdu.lab.pojo.GroceryFeedbackExample" >
     delete from grocery_feedback
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.hdu.lab.model.GroceryFeedback" >
+  <insert id="insert" parameterType="edu.hdu.lab.pojo.GroceryFeedback" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -112,7 +112,7 @@
       #{lastEditor,jdbcType=INTEGER}, #{lastEditTime,jdbcType=TIMESTAMP}, #{grocery,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="edu.hdu.lab.model.GroceryFeedback" >
+  <insert id="insertSelective" parameterType="edu.hdu.lab.pojo.GroceryFeedback" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.hdu.lab.model.GroceryFeedbackExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="edu.hdu.lab.pojo.GroceryFeedbackExample" resultType="java.lang.Integer" >
     select count(*) from grocery_feedback
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -206,7 +206,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.model.GroceryFeedback" >
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.pojo.GroceryFeedback" >
     update grocery_feedback
     <set >
       <if test="rate != null" >
@@ -230,7 +230,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.model.GroceryFeedback" >
+  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.pojo.GroceryFeedback" >
     update grocery_feedback
     set rate = #{rate,jdbcType=INTEGER},
       texts = #{texts,jdbcType=VARCHAR},
@@ -242,7 +242,7 @@
   </update>
   
   <!--user defined maps-->
-  <resultMap id="FeedBackMap" type="edu.hdu.lab.model.GroceryFeedback" >
+  <resultMap id="FeedBackMap" type="edu.hdu.lab.pojo.GroceryFeedback" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="rate" property="rate" jdbcType="INTEGER" />
     <result column="texts" property="texts" jdbcType="VARCHAR" />

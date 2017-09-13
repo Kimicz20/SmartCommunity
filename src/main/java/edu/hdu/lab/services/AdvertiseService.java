@@ -1,7 +1,7 @@
 package edu.hdu.lab.services;
 
-import edu.hdu.lab.model.Advertise;
-import edu.hdu.lab.model.AdvertiseClick;
+import edu.hdu.lab.pojo.Advertise;
+import edu.hdu.lab.pojo.AdvertiseClick;
 
 import java.util.List;
 

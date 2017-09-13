@@ -4,7 +4,8 @@
 
 package edu.hdu.lab.controllers;
 
-import edu.hdu.lab.model.Life;
+import edu.hdu.lab.datasource.DataSource;
+import edu.hdu.lab.pojo.Life;
 import edu.hdu.lab.services.LifeService;
 import edu.hdu.lab.utils.Constants;
 import edu.hdu.lab.utils.JsonUtils;

@@ -5,8 +5,8 @@
 package edu.hdu.lab.services.impl;
 
 import edu.hdu.lab.mapper.ParcelMapper;
-import edu.hdu.lab.model.Parcel;
-import edu.hdu.lab.model.ParcelExample;
+import edu.hdu.lab.pojo.Parcel;
+import edu.hdu.lab.pojo.ParcelExample;
 import edu.hdu.lab.services.ParcelService;
 import edu.hdu.lab.utils.Constants;
 import java.util.Calendar;

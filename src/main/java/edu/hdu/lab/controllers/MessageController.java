@@ -3,14 +3,12 @@
  */
 package edu.hdu.lab.controllers;
 
-import edu.hdu.lab.model.Message;
+import edu.hdu.lab.pojo.Message;
 import edu.hdu.lab.services.FamilyService;
 import edu.hdu.lab.services.MessageService;
 import edu.hdu.lab.utils.Constants;
 import edu.hdu.lab.utils.JsonUtils;
 import edu.hdu.lab.utils.WebUtils;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 消息模块控制器

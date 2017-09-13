@@ -41,7 +41,12 @@
           <artifactId>spring-tx</artifactId>
           <version>4.0.5.RELEASE</version>
       </dependency>
-       <!--数据库-->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-aspects</artifactId>
+          <version>4.3.7.RELEASE</version>
+      </dependency>
+      <!--数据库-->
 	<dependency>
 	    <groupId>mysql</groupId>
 	    <artifactId>mysql-connector-java</artifactId>
@@ -135,20 +140,50 @@
     <!--插件
     网络服务器jetty
     -->
-  <build>
-    <finalName>smartCommunity</finalName>
-    <plugins>
-         <plugin>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-maven-plugin</artifactId>
-            <version>9.2.1.v20140609</version>
-            <configuration>
-                <scanIntervalSeconds>5</scanIntervalSeconds>
-                 <webAppConfig>
-                    <contextPath>/${project.artifactId}</contextPath>
-                 </webAppConfig>
-            </configuration>
-        </plugin>
-    </plugins>    
-  </build>
+  <!--<build>-->
+    <!--<finalName>smartCommunity</finalName>-->
+    <!--<plugins>-->
+         <!--<plugin>-->
+            <!--<groupId>org.eclipse.jetty</groupId>-->
+            <!--<artifactId>jetty-maven-plugin</artifactId>-->
+            <!--<version>9.2.1.v20140609</version>-->
+            <!--<configuration>-->
+                <!--<scanIntervalSeconds>5</scanIntervalSeconds>-->
+                 <!--<webAppConfig>-->
+                    <!--<contextPath>/${project.artifactId}</contextPath>-->
+                 <!--</webAppConfig>-->
+            <!--</configuration>-->
+        <!--</plugin>-->
+    <!--</plugins>    -->
+  <!--</build>-->
+
+    <build>
+        <finalName>smartCommunity</finalName>
+        <!-- 配置插件 -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <port>8080</port>
+                    <path>/SmartCommunity</path>
+                </configuration>
+            </plugin>
+        </plugins>
+        <!-- 如果不添加此节点mybatis的mapper.xml文件都会被漏掉。 -->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <!-- 此配置不可缺，否则mybatis的Mapper.xml将会丢失 -->
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <!--指定资源的位置-->
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
 </project>

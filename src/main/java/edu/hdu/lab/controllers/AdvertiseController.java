@@ -1,7 +1,7 @@
 package edu.hdu.lab.controllers;
 
-import edu.hdu.lab.model.Advertise;
-import edu.hdu.lab.model.AdvertiseClick;
+import edu.hdu.lab.pojo.Advertise;
+import edu.hdu.lab.pojo.AdvertiseClick;
 import edu.hdu.lab.services.AdvertiseService;
 import edu.hdu.lab.utils.Constants;
 import edu.hdu.lab.utils.JsonUtils;

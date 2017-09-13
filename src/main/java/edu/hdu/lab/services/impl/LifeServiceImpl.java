@@ -5,8 +5,8 @@
 package edu.hdu.lab.services.impl;
 
 import edu.hdu.lab.mapper.LifeMapper;
-import edu.hdu.lab.model.Life;
-import edu.hdu.lab.model.LifeExample;
+import edu.hdu.lab.pojo.Life;
+import edu.hdu.lab.pojo.LifeExample;
 import edu.hdu.lab.services.LifeService;
 import edu.hdu.lab.utils.Constants;
 import edu.hdu.lab.utils.LocationUtils;

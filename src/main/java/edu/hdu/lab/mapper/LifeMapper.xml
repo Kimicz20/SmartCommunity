@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.hdu.lab.mapper.LifeMapper" >
-  <resultMap id="BaseResultMap" type="edu.hdu.lab.model.Life" >
+  <resultMap id="BaseResultMap" type="edu.hdu.lab.pojo.Life" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
@@ -80,7 +80,7 @@
     id, type, title, intro, icon, address, phone, description, creator, last_editor, 
     last_edit_time, is_discount, discount, picture, location
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.model.LifeExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.pojo.LifeExample" >
     select
     <if test="distinct" >
       distinct
@@ -104,13 +104,13 @@
     delete from life
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.hdu.lab.model.LifeExample" >
+  <delete id="deleteByExample" parameterType="edu.hdu.lab.pojo.LifeExample" >
     delete from life
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.hdu.lab.model.Life" >
+  <insert id="insert" parameterType="edu.hdu.lab.pojo.Life" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -125,7 +125,7 @@
       #{lastEditTime,jdbcType=TIMESTAMP}, #{isDiscount,jdbcType=INTEGER}, #{discount,jdbcType=VARCHAR}, 
       #{picture,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="edu.hdu.lab.model.Life" >
+  <insert id="insertSelective" parameterType="edu.hdu.lab.pojo.Life" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -219,7 +219,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.hdu.lab.model.LifeExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="edu.hdu.lab.pojo.LifeExample" resultType="java.lang.Integer" >
     select count(*) from life
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -299,7 +299,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.model.Life" >
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.pojo.Life" >
     update life
     <set >
       <if test="type != null" >
@@ -347,7 +347,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.model.Life" >
+  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.pojo.Life" >
     update life
     set type = #{type,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 package edu.hdu.lab.mapper;
 
-import edu.hdu.lab.model.Message;
-import edu.hdu.lab.model.MessageExample;
+import edu.hdu.lab.pojo.Message;
+import edu.hdu.lab.pojo.MessageExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

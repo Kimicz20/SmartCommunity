@@ -4,8 +4,8 @@
 
 package edu.hdu.lab.services;
 
-import edu.hdu.lab.model.Notification;
-import edu.hdu.lab.model.NotificationRead;
+import edu.hdu.lab.pojo.Notification;
+import edu.hdu.lab.pojo.NotificationRead;
 import java.util.List;
 import java.util.Map;
 

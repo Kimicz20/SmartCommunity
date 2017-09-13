@@ -6,9 +6,9 @@ package edu.hdu.lab.services.impl;
 
 import edu.hdu.lab.mapper.FamilyCommentMapper;
 import edu.hdu.lab.mapper.FamilyMapper;
-import edu.hdu.lab.model.Family;
-import edu.hdu.lab.model.FamilyComment;
-import edu.hdu.lab.model.Message;
+import edu.hdu.lab.pojo.Family;
+import edu.hdu.lab.pojo.FamilyComment;
+import edu.hdu.lab.pojo.Message;
 import edu.hdu.lab.services.FamilyService;
 import edu.hdu.lab.services.MessageService;
 import edu.hdu.lab.utils.Constants;

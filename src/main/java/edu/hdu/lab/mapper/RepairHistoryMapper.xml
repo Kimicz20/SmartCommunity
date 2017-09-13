@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.hdu.lab.mapper.RepairHistoryMapper" >
-  <resultMap id="BaseResultMap" type="edu.hdu.lab.model.RepairHistory" >
+  <resultMap id="BaseResultMap" type="edu.hdu.lab.pojo.RepairHistory" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="repair_id" property="repairId" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List" >
     id, repair_id, status, last_editor, time, last_edit_time, comment
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.model.RepairHistoryExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.pojo.RepairHistoryExample" >
     select
     <if test="distinct" >
       distinct
@@ -95,13 +95,13 @@
     delete from repair_history
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.hdu.lab.model.RepairHistoryExample" >
+  <delete id="deleteByExample" parameterType="edu.hdu.lab.pojo.RepairHistoryExample" >
     delete from repair_history
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.hdu.lab.model.RepairHistory" >
+  <insert id="insert" parameterType="edu.hdu.lab.pojo.RepairHistory" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -112,7 +112,7 @@
       #{time,jdbcType=TIMESTAMP}, #{lastEditTime,jdbcType=TIMESTAMP}, #{comment,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="edu.hdu.lab.model.RepairHistory" >
+  <insert id="insertSelective" parameterType="edu.hdu.lab.pojo.RepairHistory" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.hdu.lab.model.RepairHistoryExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="edu.hdu.lab.pojo.RepairHistoryExample" resultType="java.lang.Integer" >
     select count(*) from repair_history
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -206,7 +206,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.model.RepairHistory" >
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.pojo.RepairHistory" >
     update repair_history
     <set >
       <if test="repairId != null" >
@@ -230,7 +230,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.model.RepairHistory" >
+  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.pojo.RepairHistory" >
     update repair_history
     set repair_id = #{repairId,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
@@ -242,7 +242,7 @@
   </update>
   
 <!-- User defined maps-->
-  <resultMap id="RepairHistoryResultMap" type="edu.hdu.lab.model.RepairHistory" >
+  <resultMap id="RepairHistoryResultMap" type="edu.hdu.lab.pojo.RepairHistory" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="repair_id" property="repairId" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
@@ -253,7 +253,7 @@
     <result column="user_role" property="userRole" jdbcType="INTEGER" />
   </resultMap>
   
-  <select id="getRepairHistoryList" parameterType="edu.hdu.lab.model.RepairHistory" resultMap="RepairHistoryResultMap">
+  <select id="getRepairHistoryList" parameterType="edu.hdu.lab.pojo.RepairHistory" resultMap="RepairHistoryResultMap">
     select 
         repair_history.id as id, 
         repair_history.repair_id as repair_id, 

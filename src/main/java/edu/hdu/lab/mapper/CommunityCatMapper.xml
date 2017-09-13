@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="edu.hdu.lab.mapper.CommunityCatMapper" >
+
+  <select id="getAllDatabases" resultType="java.lang.String" >
+    show databases;
+  </select>
+  <resultMap id="CommunityMap" type="edu.hdu.lab.pojo.Community" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="db_name" property="dbName" jdbcType="VARCHAR" />
+    <result column="community_name" property="communityName" jdbcType="VARCHAR" />
+  </resultMap>   
+  <select id="getAllCommunities" resultMap="CommunityMap" >
+    select * from community;
+  </select>
+</mapper>

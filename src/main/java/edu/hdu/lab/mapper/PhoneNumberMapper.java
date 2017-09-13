@@ -1,7 +1,7 @@
 package edu.hdu.lab.mapper;
 
-import edu.hdu.lab.model.PhoneNumber;
-import edu.hdu.lab.model.PhoneNumberExample;
+import edu.hdu.lab.pojo.PhoneNumber;
+import edu.hdu.lab.pojo.PhoneNumberExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,7 +1,7 @@
 package edu.hdu.lab.mapper;
 
-import edu.hdu.lab.model.SuggestionHistory;
-import edu.hdu.lab.model.SuggestionHistoryExample;
+import edu.hdu.lab.pojo.SuggestionHistory;
+import edu.hdu.lab.pojo.SuggestionHistoryExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

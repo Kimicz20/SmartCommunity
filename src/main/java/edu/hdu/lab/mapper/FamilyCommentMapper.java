@@ -1,7 +1,7 @@
 package edu.hdu.lab.mapper;
 
-import edu.hdu.lab.model.FamilyComment;
-import edu.hdu.lab.model.FamilyCommentExample;
+import edu.hdu.lab.pojo.FamilyComment;
+import edu.hdu.lab.pojo.FamilyCommentExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

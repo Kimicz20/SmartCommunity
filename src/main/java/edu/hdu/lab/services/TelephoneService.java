@@ -4,7 +4,7 @@
 
 package edu.hdu.lab.services;
 
-import edu.hdu.lab.model.PhoneNumber;
+import edu.hdu.lab.pojo.PhoneNumber;
 import java.util.List;
 
 /**

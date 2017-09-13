@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.hdu.lab.mapper.ProductMapper" >
-  <resultMap id="BaseResultMap" type="edu.hdu.lab.model.Product" >
+  <resultMap id="BaseResultMap" type="edu.hdu.lab.pojo.Product" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="REAL" />
@@ -75,7 +75,7 @@
     id, title, price, unit, description, creator, last_editor, last_edit_time, grocery, 
     icon
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.model.ProductExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.hdu.lab.pojo.ProductExample" >
     select
     <if test="distinct" >
       distinct
@@ -99,13 +99,13 @@
     delete from product
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.hdu.lab.model.ProductExample" >
+  <delete id="deleteByExample" parameterType="edu.hdu.lab.pojo.ProductExample" >
     delete from product
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.hdu.lab.model.Product" >
+  <insert id="insert" parameterType="edu.hdu.lab.pojo.Product" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -118,7 +118,7 @@
       #{lastEditTime,jdbcType=TIMESTAMP}, #{grocery,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="edu.hdu.lab.model.Product" >
+  <insert id="insertSelective" parameterType="edu.hdu.lab.pojo.Product" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -182,7 +182,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.hdu.lab.model.ProductExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="edu.hdu.lab.pojo.ProductExample" resultType="java.lang.Integer" >
     select count(*) from product
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -242,7 +242,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.model.Product" >
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hdu.lab.pojo.Product" >
     update product
     <set >
       <if test="title != null" >
@@ -275,7 +275,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.model.Product" >
+  <update id="updateByPrimaryKey" parameterType="edu.hdu.lab.pojo.Product" >
     update product
     set title = #{title,jdbcType=VARCHAR},
       price = #{price,jdbcType=REAL},

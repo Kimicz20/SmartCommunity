@@ -4,7 +4,7 @@
 package edu.hdu.lab.services.impl;
 
 import edu.hdu.lab.mapper.MessageMapper;
-import edu.hdu.lab.model.Message;
+import edu.hdu.lab.pojo.Message;
 import edu.hdu.lab.services.MessageService;
 import edu.hdu.lab.utils.Constants;
 import java.util.List;

@@ -5,8 +5,8 @@
 package edu.hdu.lab.services.impl;
 
 import edu.hdu.lab.mapper.PhoneNumberMapper;
-import edu.hdu.lab.model.PhoneNumber;
-import edu.hdu.lab.model.PhoneNumberExample;
+import edu.hdu.lab.pojo.PhoneNumber;
+import edu.hdu.lab.pojo.PhoneNumberExample;
 import edu.hdu.lab.services.TelephoneService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

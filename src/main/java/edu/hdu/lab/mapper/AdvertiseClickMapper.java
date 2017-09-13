@@ -1,7 +1,7 @@
 package edu.hdu.lab.mapper;
 
-import edu.hdu.lab.model.AdvertiseClick;
-import edu.hdu.lab.model.AdvertiseClickExample;
+import edu.hdu.lab.pojo.AdvertiseClick;
+import edu.hdu.lab.pojo.AdvertiseClickExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

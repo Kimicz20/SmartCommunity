@@ -1,7 +1,7 @@
 package edu.hdu.lab.mapper;
 
-import edu.hdu.lab.model.Notification;
-import edu.hdu.lab.model.NotificationExample;
+import edu.hdu.lab.pojo.Notification;
+import edu.hdu.lab.pojo.NotificationExample;
 import java.util.List;
 import java.util.Map;
 

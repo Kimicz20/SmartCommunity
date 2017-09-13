@@ -6,9 +6,9 @@ package edu.hdu.lab.services.impl;
 
 import edu.hdu.lab.mapper.RepairHistoryMapper;
 import edu.hdu.lab.mapper.RepairMapper;
-import edu.hdu.lab.model.Repair;
-import edu.hdu.lab.model.RepairExample;
-import edu.hdu.lab.model.RepairHistory;
+import edu.hdu.lab.pojo.Repair;
+import edu.hdu.lab.pojo.RepairExample;
+import edu.hdu.lab.pojo.RepairHistory;
 import edu.hdu.lab.services.RepairService;
 import edu.hdu.lab.utils.Constants;
 import edu.hdu.lab.utils.WebUtils;

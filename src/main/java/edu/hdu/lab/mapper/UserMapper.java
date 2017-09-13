@@ -1,11 +1,9 @@
 package edu.hdu.lab.mapper;
 
-import edu.hdu.lab.model.Community;
-import edu.hdu.lab.model.User;
-import edu.hdu.lab.model.UserExample;
+import edu.hdu.lab.pojo.User;
+import edu.hdu.lab.pojo.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-
 public interface UserMapper {
     int countByExample(UserExample example);
 
@@ -30,10 +28,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     //user defined
-    List<String> getAllDatabases();
-    
-    List<Community> getAllCommunities();
-    
     List<User> getUsersByParams(User u);
     
     List<User> getUsersByParamsInstantly(User u);        

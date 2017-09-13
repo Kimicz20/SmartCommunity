@@ -2,9 +2,8 @@ package edu.hdu.lab.services.impl;
 
 import edu.hdu.lab.mapper.AdvertiseClickMapper;
 import edu.hdu.lab.mapper.AdvertiseMapper;
-import edu.hdu.lab.model.Advertise;
-import edu.hdu.lab.model.AdvertiseClick;
-import edu.hdu.lab.model.AdvertiseExample;
+import edu.hdu.lab.pojo.Advertise;
+import edu.hdu.lab.pojo.AdvertiseClick;
 import edu.hdu.lab.services.AdvertiseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
